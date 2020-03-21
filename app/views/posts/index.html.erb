@@ -1,0 +1,15 @@
+<div>
+    <div class="container">
+        <h1>ホーム</h1>
+
+        <div>
+            <% @posts.each do |post| %>
+
+                <p><%= post.id %></p>
+                <p><%= post.content %></p>
+                <p><%= post.created_at %></p>
+            <% end %>
+
+        </div>
+    </div>
+</div>
