@@ -1,15 +1,20 @@
 <div>
     <div class="container">
         <h1>ホーム</h1>
-
+        <a href="posts/new">ツイートする</a>
+        <% if flash[:notice] %>
+            <div><%= flash[:notice] %></div>
+        <% end %>
         <div>
             <% @posts.each do |post| %>
-
-                <p><%= post.id %></p>
-                <p><%= post.content %></p>
-                <p><%= post.created_at %></p>
+                <div class="content">
+                    <p><%= post.id %></p>
+                    <p><%= post.content %></p>
+                    <p><%= post.created_at.strftime('%Y年%m月%d日%H時%M分') %></p>
+                    <p><%= link_to '詳細', post %></p>
+                    <p><%= link_to '削除', post, method: :delete %></p>
+                </div>
             <% end %>
-
         </div>
     </div>
 </div>

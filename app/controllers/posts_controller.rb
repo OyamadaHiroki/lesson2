@@ -4,5 +4,49 @@ class PostsController < ApplicationController
         @posts = Post.all
     end
 
-end
+    def new
+        @post = Post.new(flash[:post])
+    end
+    
+    def create
+        @post = Post.new(post_params)
+        if @post.save
+            flash[:notice] = "投稿が完了しました"
+            redirect_to posts_path
+        else
+            redirect_to new_post_path, flash: {
+                post: @post,
+                error_messages: @post.errors.full_messages
+            }
+        end
+    end
 
+    def show
+        set_target_post
+    end
+
+    def destroy
+        set_target_post
+        @post.destroy
+        redirect_to posts_path
+    end 
+    
+    def update
+        set_target_post
+        if @post.update(post_params)
+            redirect_to posts_path
+        else
+            render 'posts/edit'
+        end
+    end
+
+    private
+
+    def post_params
+        params.require(:post).permit(:content)
+    end
+
+    def set_target_post
+        @post = Post.find(params[:id])
+    end
+end
