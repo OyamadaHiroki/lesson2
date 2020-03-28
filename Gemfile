@@ -48,6 +48,7 @@ group :development do
 
   #User add gems
   gem 'pry-byebug'
+  gem 'pry-rails'
 end
 
 group :test do

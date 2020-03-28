@@ -1,0 +1,10 @@
+<div>
+    <%= form_for repry do |f| %>
+    <%= f.hidden_field :post_id %>
+    <div class="form-group">
+        <%= f.label :repry, 'リプライ' %>
+        <%= f.text_field :repry, class: 'form-control' %>
+    </div>
+    <%= f.submit 'リプライを送る', class: 'btn btn-primary' %>
+    <% end %>
+</div>　

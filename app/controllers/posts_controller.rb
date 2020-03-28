@@ -9,32 +9,34 @@ class PostsController < ApplicationController
     end
     
     def create
-        @post = Post.new(post_params)
-        if @post.save
+        post = Post.new(post_params)
+        binding.pry
+        if post.save
             flash[:notice] = "投稿が完了しました"
-            redirect_to posts_path
+            redirect_to post
         else
             redirect_to new_post_path, flash: {
-                post: @post,
-                error_messages: @post.errors.full_messages
+                post: post,
+                error_messages: post.errors.full_messages
             }
         end
     end
 
     def show
         set_target_post
+        @repry = Repry.new(post_id: @post.id)
     end
 
     def destroy
         set_target_post
         @post.destroy
-        redirect_to posts_path
+        redirect_to posts_path, flash: { notice: "投稿が削除されました" }
     end 
     
     def update
         set_target_post
         if @post.update(post_params)
-            redirect_to posts_path
+            redirect_to @post
         else
             render 'posts/edit'
         end
@@ -49,4 +51,5 @@ class PostsController < ApplicationController
     def set_target_post
         @post = Post.find(params[:id])
     end
-end
+
+end 
