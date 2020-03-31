@@ -5,10 +5,7 @@
     <p><%= link_to '削除', @post, method: :delete %></p>
     <p><%= link_to '戻る', posts_path %></p>
 </div>
-
 <div>
     <%= render @post.repries %>
 </div>
-
 <%= render partial: 'repries/form', locals: { repry: @repry } %>
-

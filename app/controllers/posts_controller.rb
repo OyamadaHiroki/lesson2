@@ -10,10 +10,10 @@ class PostsController < ApplicationController
     
     def create
         post = Post.new(post_params)
-        binding.pry
+        post.user_id = @current_user.id
         if post.save
             flash[:notice] = "投稿が完了しました"
-            redirect_to post
+            redirect_to posts_path
         else
             redirect_to new_post_path, flash: {
                 post: post,
