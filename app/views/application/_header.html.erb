@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+    <a class="navbar-brand" href="#">Tweetapp</a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" >
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+        <% if @current_user %>
+            <li class="nav-item">
+                <%= link_to 'ホーム', posts_path  %>
+            </li>
+            <li class="nav-item">
+                <%= link_to 'マイページ', mypage_path  %>
+            </li>
+            <li class="nav-item">
+                <%= link_to 'ツイートする', new_post_path  %>
+            </li>
+            <li class="nav-item">
+                <%= link_to 'ログアウト', logout_path, method: :delete  %>
+            </li>  
+        <% else %>
+            <li class="nav-item">
+                <%= link_to '登録', new_user_path %>
+            </li>
+            <li class="nav-item">
+                <%= link_to 'ログイン', root_path %>
+            </li>
+        <% end %>
+        </ul>
+    </div>
+</nav>
+
+<% if flash[:notice] %>
+    <div class="alert alert-primary">
+        <div><%= flash[:notice] %></div>
+    </div>
+    <% end %>
+    
+    <% if flash[:error_messages] %>
+    <div class="alert alert-warning">
+        <ul>
+            <% flash[:error_messages].each do |msg| %>
+            <li><%= msg %></li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>

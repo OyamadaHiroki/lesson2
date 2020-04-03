@@ -1,20 +1,21 @@
 class RepriesController < ApplicationController
 
   def create
-    @repry = Repry.new(repry_params)
-    if @repry.save
+    repry = Repry.new(repry_params)
+    repry.user_id = current_user.id
+    if repry.save
       flash[:notice] = 'リプライしました'
-      redirect_to @repry.post
+      redirect_to repry.post
     else
       redirect_to :back, flash: {
-        repry: @repry,
-        error_messages: @repry.errors.full_messages
+        repry: repry,
+        error_messages: repry.errors.full_messages
     }
     end
   end
     
   def destroy
-    repry = set_target_repry
+    repry = Repry.find(params[:id])
     repry.delete
     redirect_to repry.post, {notice: 'コメントが削除されました'}
   end
@@ -25,7 +26,4 @@ class RepriesController < ApplicationController
     params.require(:repry).permit(:post_id, :repry)
   end
 
-  def set_target_repry
-    repry = Repry.find(params[:id])
-  end
 end

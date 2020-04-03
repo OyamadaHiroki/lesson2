@@ -5,19 +5,5 @@
         <a href="/posts" class="btn btn-outline-dark">掲示板一覧</a>
     </div>
 </div>
-<% if flash[:error_messages] %>
-    <div>
-        <ul>
-            <% flash[:error_messages].each do |msg| %>
-            <li><%= msg %></li>
-            <% end %>
-        </ul>
-    </div>
-<% end %>
-<%= form_for @post do |f| %>
-    <div class="form-group">
-        <%= f.label :content, '本文' %>
-        <%= f.text_field :content, class: 'form-control' %>
-    </div>
-    <%= f.submit 'ツイートする', class: 'btn btn-primary' %>
-<% end %>
+
+<p><%= render partial: 'post_form', locals: { post: @post } %></p>

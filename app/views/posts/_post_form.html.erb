@@ -1,0 +1,9 @@
+<div class="tweet-form">
+    <%= form_for @post do |f| %>
+        <div class="form-group">
+            <%= f.label :content, '今何してる？' %>
+            <%= f.text_field :content, class: 'form-control', row: 4 %>
+        </div>
+        <%= f.submit 'ツイートする', class: 'btn btn-primary' %>
+    <% end %>
+</div>

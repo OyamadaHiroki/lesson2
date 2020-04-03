@@ -1,7 +1,8 @@
 class PostsController < ApplicationController
 
     def index
-        @posts = Post.all
+        @posts = Post.all.order(created_at: :desc)
+        @post = Post.new(flash[:post])
     end
 
     def new
@@ -24,7 +25,9 @@ class PostsController < ApplicationController
 
     def show
         set_target_post
+        @repries = Repry.where(post_id: @post.id)
         @repry = Repry.new(post_id: @post.id)
+        @like = Like.new
     end
 
     def destroy

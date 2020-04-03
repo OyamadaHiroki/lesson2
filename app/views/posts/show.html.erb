@@ -1,11 +1,17 @@
 <h1>詳細</h1>
+<%= link_to posts_path do %>
+    <i class="fas fa-arrow-left"></i>
+<% end %>
 <div>
+    <p><%= link_to(@post.user.name, mypage_path(@post.user_id)) %></p>
+    <p><%= date_format(@post.created_at) %></p>
     <p><%= @post.content %></p>
+    
     <p><%= @post.created_at.strftime('%Y年%m月%d日%H時%M分') %></p>
     <p><%= link_to '削除', @post, method: :delete %></p>
-    <p><%= link_to '戻る', posts_path %></p>
+    
 </div>
-<div>
-    <%= render @post.repries %>
-</div>
-<%= render partial: 'repries/form', locals: { repry: @repry } %>
+
+<p><%= render partial: 'repries/repry', locals: { repry: @repies } %></p> 
+
+<p><%= render partial: 'repries/form', locals: { repry: @repry } %></p>
