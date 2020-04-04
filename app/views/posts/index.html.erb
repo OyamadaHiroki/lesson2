@@ -12,9 +12,9 @@
                     <p><%= post.content %></p>
 
                     <p><%= render partial: 'like', locals: { post: post } %></p>
-
+                    <p><%= @like_count %>
                     <p><%= link_to '詳細', post %></p>
-                    
+
                     <p><%= render partial: 'delete', locals: { post: post } %></p>
                     
 
