@@ -11,6 +11,7 @@ class UsersController < ApplicationController
       flash[:notice] = "ユーザー登録が完了しました"
       redirect_to posts_path
     else
+      flash[:error_messages] = user.errors.full_messages
       redirect_back(fallback_location: root_path)
     end
     
@@ -44,7 +45,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :image, :profile, :email, :password_digest, :password_confirmation)
+    params.require(:user).permit(:name, :image, :profile, :email, :password, :password_confirmation)
   end
 
 end

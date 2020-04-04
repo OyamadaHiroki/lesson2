@@ -1,7 +1,9 @@
 <div>
     <div class="container">
         <h1>ホーム</h1>
+
         <p><%= render partial: 'post_form', locals: { post: @post } %></p>
+
         <% @posts.each do |post| %>
             <div class="media content">
                 <div class="media-body">
@@ -20,7 +22,11 @@
                     <% end %>
 
                     <p><%= link_to '詳細', post %></p>
-                    <p><%= link_to '削除', post, method: :delete %></p>
+
+                    <% if post.user.id == @current_user.id %>
+                        <p><%= link_to '削除', post, method: :delete %></p>
+                    <% end %>
+
                 </div>
             </div>
         <% end %>
