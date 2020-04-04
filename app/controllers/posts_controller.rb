@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
-
+    before_action :authenticate_user
+    before_action :ensure_correct_user, {only [:destroy]}
     def index
         @posts = Post.all.order(created_at: :desc)
         @post = Post.new(flash[:post])
@@ -35,15 +36,6 @@ class PostsController < ApplicationController
         @post.destroy
         redirect_to posts_path, flash: { notice: "投稿が削除されました" }
     end 
-    
-    def update
-        set_target_post
-        if @post.update(post_params)
-            redirect_to @post
-        else
-            render 'posts/edit'
-        end
-    end
 
     private
 
@@ -53,6 +45,14 @@ class PostsController < ApplicationController
 
     def set_target_post
         @post = Post.find(params[:id])
+    end
+
+    def ensure_correct_user
+        @post = Post.find(params[:id])
+        if @current_user.id != @post.id
+            flash[:notice] = "権限がありません。"
+            redirect_back(fallback_location: root_path)
+        end
     end
 
 end 

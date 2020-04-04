@@ -1,10 +1,11 @@
 class RepriesController < ApplicationController
+  before_action :authenticate_user
 
   def create
     repry = Repry.new(repry_params)
     repry.user_id = current_user.id
     if repry.save
-      flash[:notice] = 'リプライしました'
+      flash[:notice] = 'コメントしました'
       redirect_to repry.post
     else
       redirect_to :back, flash: {
