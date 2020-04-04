@@ -9,9 +9,8 @@
     
     <p><%= @post.created_at.strftime('%Y年%m月%d日%H時%M分') %></p>
 
-    <% if post.user.id == @current_user.id %>
-        <p><%= link_to '削除', @post, method: :delete %></p>
-    <% end %>
+    <p><%= render partial: 'like', locals: { post: @post } %></p>
+    <p><%= render partial: 'delete', locals: { post: @post } %></p>
     
 </div>
 
