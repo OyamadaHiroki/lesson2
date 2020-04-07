@@ -1,0 +1,12 @@
+<h1>マイページ</h1>
+<% if @user.image? %>
+    <p><%= image_tag @user.image.thumb100.url %></p>
+<% else %>
+    <p><%= image_tag("/assets/default.png", width: "70px", height: "70px") %></p>
+<% end %>
+<p><%= @user.name %></p>
+<p><%= @user.email %></p>
+<p><%= @user.profile %></p>
+<% if @user.id == @current_user.id %>
+    <p><%= link_to '編集', edit_user_path(@user) %></p>
+<% end %>

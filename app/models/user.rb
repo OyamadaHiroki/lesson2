@@ -1,8 +1,10 @@
 class User < ApplicationRecord
+    mount_uploader :image, ImageUploader
     has_many :posts
     has_many :likes
+    has_many :repries
     has_secure_password
-
+    
     validates :name,
     presence: true,
     length: {maximum: 12},
@@ -15,7 +17,7 @@ class User < ApplicationRecord
     presence: true
 
     validates :password,
-    length: {minimum: 6 }
-
+    length: {minimum: 6 },
+    allow_nil: true
 
 end

@@ -7,8 +7,6 @@ Rails.application.routes.draw do
     resources :likes, only: %i[create destroy]
   end
   resources :repries, only: %i[create destroy]
-  
-  get 'mypage', to: 'users#me'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
 end

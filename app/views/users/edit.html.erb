@@ -1,5 +1,15 @@
 <h1>編集</h1>
-<%= form_for @user do |f| %>
+<%= form_for @user, html: { multipart: true } do |f| %>
+    <div class="form-group">
+        <%=f.label :image,"ユーザー画像" %>
+        <% if @user.image? %>
+            <p><%= image_tag @user.image.url %></p>
+        <% else %>
+            <p><%= image_tag("/assets/default.png", width: "70px", height: "70px") %></p>
+        <% end %>
+        <%= f.file_field :image %>
+        <%= f.hidden_field :image_cache %>
+    </div>
     <div class="form-group">
         <%= f.label :name, 'ユーザー名' %>
         <%= f.text_field :name, class: 'form-control' %>
@@ -12,13 +22,6 @@
         <%= f.label :profile, 'プロフィール' %>
         <%= f.text_field :profile, class: 'form-control' %>
     </div>
-    <div class="form-group">
-        <%= f.label :password, 'パスワード' %>
-        <%= f.password_field :password, class: 'form-control' %>
-    </div>
-    <div class="form-group">
-        <%= f.label :password_confirmation, 'パスワード（確認）' %>
-        <%= f.password_field :password_confirmation, class: 'form-control' %>
-    </div>
+    
     <%= f.submit '完了', class: 'btn btn-primary' %>
 <% end %>

@@ -7,12 +7,17 @@
         <% @posts.each do |post| %>
             <div class="media content">
                 <div class="media-body">
-                    <h5 class="mt-0 font-weight-bold"><%= link_to(post.user.name, mypage_path(post.user_id)) %></h5>
+                    <% if post.user.image %>
+                        <p><%= image_tag post.user.image.thumb70.url %></p>
+                    <% else %>
+                        <p><%= image_tag "assets/default.png", width: "70px" %></p>
+                    <% end %>
+                    <h5 class="mt-0 font-weight-bold"><%= link_to(post.user.name, "users/#{post.user.id}" ) %></h5>
                     <p class="card_subtitle"><%= date_format(post.created_at) %></p>
                     <p><%= post.content %></p>
 
                     <p><%= render partial: 'like', locals: { post: post } %></p>
-                    <p><%= @like_count %>
+                    <p><%= @like_count %></p>
                     <p><%= link_to '詳細', post %></p>
 
                     <p><%= render partial: 'delete', locals: { post: post } %></p>

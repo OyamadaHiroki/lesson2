@@ -7,8 +7,9 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:sessions][:password])
       session[:user_id] = user.id
       flash[:notice] = "ログインしました"
-      redirect_to mypage_path
+      redirect_to user
     else
+      flash[:notice] = "ログインできません"
       render "home/index"
     end
   end

@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-light bg-light">
-    <a class="navbar-brand" href="#">Tweetapp</a>
+    <a class="navbar-brand" href="/posts">Tweetapp</a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" >
         <span class="navbar-toggler-icon"></span>
@@ -12,7 +12,7 @@
                 <%= link_to 'ホーム', posts_path  %>
             </li>
             <li class="nav-item">
-                <%= link_to 'マイページ', mypage_path  %>
+                <%= link_to 'マイページ', user_path(@current_user)  %>
             </li>
             <li class="nav-item">
                 <%= link_to 'ツイートする', new_post_path  %>

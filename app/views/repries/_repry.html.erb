@@ -1,9 +1,13 @@
 
 <% @repries.each do |repry| %>
     <div>
-        <%= repry.id %>
-        <%= repry.repry %>
-        <p><%= link_to '削除', repry, method: :delete %></p>
+        <p><%= repry.user.name %></p>
+        <p><%= date_format(repry.created_at) %></p>
+        <p><%= repry.repry %></p>
+        <p><%= repry.created_at.strftime('%Y年%m月%d日%H時%M分') %></p>
+        <% if repry.user.id == @current_user.id %>
+            <p><%= link_to '削除', repry, method: :delete %></p>
+        <% end %>
         <hr>
     </div>
 <% end %>

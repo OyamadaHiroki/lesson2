@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
   def create
     user = User.new(user_params)
-
+    user.image = "default.png"
     if user.save
       session[:user_id] = user.id
       flash[:notice] = "ユーザー登録が完了しました"
@@ -21,11 +21,11 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    set_target_user
   end
 
   def update
-    @user = User.find(params[:id])
+    set_target_user
       if @user.update(user_params)
           flash[:notice] = "編集が完了しました"
           redirect_to user_path
@@ -38,13 +38,19 @@ class UsersController < ApplicationController
   def destroy
   end
 
-  def me
+  def show
+    set_target_user
   end
+
 
   private
 
   def user_params
-    params.require(:user).permit(:name, :image, :profile, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :image, :image_cache, :profile, :email, :password, :password_confirmation)
+  end
+
+  def set_target_user
+    @user = User.find(params[:id])
   end
 
 end
