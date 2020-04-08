@@ -3,6 +3,11 @@
     <i class="fas fa-arrow-left"></i>
 <% end %>
 <div>
+    <% if @post.user.image %>
+        <p><%= image_tag @post.user.image.thumb70.url %></p>
+    <% else %>
+        <p><%= image_tag "assets/default.png", width: "70px" %></p>
+    <% end %>
     <p><%= link_to @post.user.name, user_path(@post) %></p>
     <p><%= date_format(@post.created_at) %></p>
     <p><%= @post.content %></p>
