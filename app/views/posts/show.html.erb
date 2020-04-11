@@ -8,7 +8,7 @@
     <% else %>
         <p><%= image_tag "assets/default.png", width: "70px" %></p>
     <% end %>
-    <p><%= link_to @post.user.name, user_path(@post) %></p>
+    <p><%= link_to @post.user.name, user_path(@post.user) %></p>
     <p><%= date_format(@post.created_at) %></p>
     <p><%= @post.content %></p>
     <p><%= @post.created_at.strftime('%Y年%m月%d日%H時%M分') %></p>
