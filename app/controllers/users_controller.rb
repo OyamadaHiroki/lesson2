@@ -40,8 +40,20 @@ class UsersController < ApplicationController
 
   def show
     set_target_user
+    @posts = @user.posts.order(created_at: :desc)
   end
 
+  def following
+    user  = User.find(params[:id])
+    @users = user.following
+    render 'follow_show'
+  end
+
+  def followers
+    user  = User.find(params[:id])
+    @users = user.followers
+    render 'follow_show'
+  end
 
   private
 

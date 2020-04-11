@@ -34,7 +34,7 @@ gem 'mini_racer'
 gem 'sassc', '~> 2.2.1'
 gem 'uglifier'
 gem 'jquery-rails'
-gem 'rails-i18n'
+gem 'rails-i18n', '~> 6.0.0'
 gem 'carrierwave'
 gem 'mini_magick'
 
