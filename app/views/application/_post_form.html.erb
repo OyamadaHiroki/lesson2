@@ -1,6 +1,5 @@
-<% @repries.each do |post| %>
-        <section class="post-item">
-            <header>
+<section class="post-item">
+            <header class="">
                 <div class="post-user-image">
                     <% if post.user.image %>
                         <%= image_tag post.user.image.thumb50.url, style: "border-radius: 50%;" %>
@@ -20,16 +19,11 @@
                         </div>
                     </div>
                     <div class="post-main">
-                        <p><%= post.repry %></p>
+                        <p><%= post.content %></p>
                     </div>
                 </div>
 
                 <div class="post-subitems">
-                    <div>
-                        <%= link_to post_path(post) do%>
-                            <i class="fas fa-reply detail-btn"></i>
-                        <% end %>
-                    </div>
                     <div>
                         <p><%= render partial: 'like', locals: { post: post } %></p>
                         <p><%= @like_count %></p>
@@ -45,4 +39,3 @@
                 </div>
             </div>
         </section>
-<% end %>

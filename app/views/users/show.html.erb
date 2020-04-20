@@ -1,37 +1,47 @@
-<h1>マイページ</h1>
-<% if @user.image? %>
-    <p><%= image_tag @user.image.thumb100.url %></p>
-<% else %>
-    <p><%= image_tag("/assets/default.png", width: "70px", height: "70px") %></p>
-<% end %>
-<p><%= @user.name %></p>
-<p><%= @user.email %></p>
-<p><%= @user.profile %></p>
-
-<p><%= render partial: 'follow_form', locals: { user: @user } %></p>
-
-<p><%= render partial: 'follow_link', locals: { user: @user } %></p>
-
-<% if @user.id == @current_user.id %>
-    <p><%= link_to '編集', edit_user_path(@user) %></p>
-<% end %>
-<p>投稿数:<%= @user.posts.count %></p>
-
-<% @posts.each do |post| %>
-    <div class="media content">
-        <div class="media-body">
-            <% if post.user.image %>
-                <p><%= image_tag post.user.image.thumb70.url %></p>
+<div class="show-user">
+    <div class="show-header">
+        <div>
+            <% if @user.image? %>
+                <%= image_tag @user.image.thumb100.url, style: "border-radius: 50%;" %>
             <% else %>
-                <p><%= image_tag "assets/default.png", width: "70px" %></p>
+                <%= image_tag("/assets/default.png", style: "width: 70px; height: 70px;" ) %>
             <% end %>
-            <h5 class="mt-0 font-weight-bold"><%= link_to(post.user.name, "users/#{post.user.id}" ) %></h5>
-            <p class="card_subtitle"><%= date_format(post.created_at) %></p>
-            <p><%= post.content %></p>
-            <p><%= render partial: 'posts/like', locals: { post: post } %></p>
-            <p><%= @like_count %></p>
-            <p><%= link_to '詳細', post %></p>
-            <p><%= render partial: 'posts/delete', locals: { post: post } %></p>
+        </div>
+        <div>
+            <% if @user.id == @current_user.id %>
+                <%= link_to 'プロフィールを編集', edit_user_path(@user), class: "user-edit-link" %>
+            <% end %>
+            <%= render partial: 'follow_form', locals: { user: @user } %>
         </div>
     </div>
- <% end %>
+    <div class="show-user-info">
+        <p class="user-name"><%= @user.name %>
+        <% if @current_user.followers.include?(@user) %>
+            <span class="following">あなたをフォローしています</span>
+        <% end %>
+        </p>
+        
+        <p class="user-email"><%= @user.email %></p>
+        <p class="user-profile"><%= @user.profile %></p>
+    </div>
+    
+    <%= render partial: 'follow_link', locals: { user: @user } %>
+    
+</div>
+<div>
+    <div>
+        <ul class="nav nav-pills" id="right-tab">
+            <li><a href="#tab1" data-toggle="tab" class="active custum-tab">ツイート：<%= @posts.count %></a></li>
+            <li><a href="#tab2" data-toggle="tab" class="custum-tab">いいねした投稿</a></li>
+        </ul>
+    </div>
+
+    <div class="main tab-content">
+        <div class="tab-pane active" id="tab1">
+            <%= render partial: 'application/posts_form', locals: { posts: @posts } %>
+        </div>
+        <div class="tab-pane" id="tab2">
+            <%= render partial: 'good_post_form', locals: { likes: @likes } %>
+        </div>
+    </div>
+</div>

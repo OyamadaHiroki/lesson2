@@ -1,16 +1,16 @@
 <div>
-<% unless @current_user.id == user.id %>
-    <div>
-        <% if  @current_user.following.include?(user) %> 
-            <%= form_for(@current_user.active_relationships.find_by(followed_id: user.id), html: { method: :delete }) do |f| %>
-                <%= f.submit "フォローを外す", class: "btn" %>
+    <% unless @current_user.id == user.id %>
+        <div class="base-btn">
+            <% if  @current_user.following.include?(user) %> 
+                <%= form_for(@current_user.active_relationships.find_by(followed_id: user.id), html: { method: :delete }) do |f| %>
+                    <%= f.submit "フォロー中", class: "unfollow-btn" %>
+                <% end %>
+            <% else %>
+                <%= form_for(@current_user.active_relationships.build) do |f| %>
+                    <div><%= hidden_field_tag :followed_id, user.id %></div>
+                    <%= f.submit "フォローする", class: "follow-btn" %>
+                <% end %>
             <% end %>
-        <% else %>
-            <%= form_for(@current_user.active_relationships.build) do |f| %>
-                <div><%= hidden_field_tag :followed_id, user.id %></div>
-                <%= f.submit "フォローする", class: "btn btn-primary" %>
-            <% end %>
-        <% end %>
-    </div>
-<% end %>
+        </div>
+    <% end %>
 </div>

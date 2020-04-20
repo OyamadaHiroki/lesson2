@@ -28,6 +28,11 @@ class ImageUploader < CarrierWave::Uploader::Base
   #   # do something
   # end
 
+  def default_url
+    "default.png"
+
+  end
+
   process :resize_to_limit => [500, 500]
   
   process resize_to_fill: [100, 100, "Center"]
@@ -44,6 +49,10 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   version :thumb30 do
     process :resize_to_limit => [30, 30]
+  end
+
+  version :thumb50 do
+    process :resize_to_limit => [50, 50]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.

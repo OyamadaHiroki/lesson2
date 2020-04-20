@@ -35,7 +35,7 @@ class PostsController < ApplicationController
     def destroy
         set_target_post
         @post.destroy
-        redirect_to posts_path, flash: { notice: "投稿が削除されました" }
+        redirect_back fallback_location: root_path, flash: { notice: "投稿が削除されました" }
     end 
 
     private

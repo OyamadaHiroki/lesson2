@@ -3,7 +3,7 @@ class RepriesController < ApplicationController
 
   def create
     repry = Repry.new(repry_params)
-    repry.user_id = current_user.id
+    repry.user_id = @current_user.id
     if repry.save
       flash[:notice] = 'コメントしました'
       redirect_to repry.post
@@ -24,7 +24,7 @@ class RepriesController < ApplicationController
   private
 
   def repry_params
-    params.require(:repry).permit(:post_id, :repry)
+    params.require(:repry).permit(:repry, :post_id)
   end
 
 end

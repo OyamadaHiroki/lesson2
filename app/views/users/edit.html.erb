@@ -1,27 +1,48 @@
-<h1>編集</h1>
 <%= form_for @user, html: { multipart: true } do |f| %>
-    <div class="form-group">
-        <%=f.label :image,"ユーザー画像" %>
+<div class="user-edit">
+    <div class="form-group form-top">
+        <%= f.submit 'プロフィールを保存', class: 'edit-btn' %>
         <% if @user.image? %>
-            <p><%= image_tag @user.image.url %></p>
+            <%= image_tag @user.image.thumb100.url, id: :image_preview, style: "border-radius: 50%; object-fit: cover; width:100px; height: 100px;" %>
         <% else %>
-            <p><%= image_tag("/assets/default.png", width: "70px", height: "70px") %></p>
+            <%= image_tag "default.png", id: :image_preview, style: "border-radius: 50%;" %>
         <% end %>
-        <%= f.file_field :image %>
-        <%= f.hidden_field :image_cache %>
+        <label for="image">
+            <div class="icon-box">
+                <i class="fas fa-image"></i>
+                <%= f.file_field :image, id: :image, style: "display:none;" %>
+                <%= f.hidden_field :image_cache %>
+            </div>
+        </label>
     </div>
     <div class="form-group">
-        <%= f.label :name, 'ユーザー名' %>
+        <%= f.label :name, '名前', class: "edit-color" %>
         <%= f.text_field :name, class: 'form-control' %>
     </div>
     <div class="form-group">
-        <%= f.label :email, 'メールアドレス' %>
+        <%= f.label :email, 'メールアドレス', class: "edit-color" %>
         <%= f.text_field :email, class: 'form-control' %>
     </div>
     <div class="form-group">
-        <%= f.label :profile, 'プロフィール' %>
+        <%= f.label :profile, '自己紹介', class: "edit-color" %>
         <%= f.text_field :profile, class: 'form-control' %>
     </div>
-    
-    <%= f.submit '完了', class: 'btn btn-primary' %>
+</div>
 <% end %>
+<script>
+    $( document ).on('turbolinks:load', $(function() {
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                $('#image_preview').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+        }
+        $("#image").change(function(){
+            readURL(this);
+        });
+    }));
+</script>
+

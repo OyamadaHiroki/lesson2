@@ -1,9 +1,5 @@
-<div class="d-flex align-items-center">
-    <h1>ツイート</h1>
-    
-    <div class="ml-auto boards__linkBox">
-        <a href="/posts" class="btn btn-outline-dark">掲示板一覧</a>
-    </div>
+<div class="back-motion">
+        <a href="/posts" class=""><i class="fas fa-arrow-left"></i></a>
 </div>
-
-<p><%= render partial: 'post_form', locals: { post: @post } %></p>
+<p class="spacer"></p>
+<%= render partial: 'application/tweet_form', locals: { post: @post } %>

@@ -41,24 +41,27 @@ class UsersController < ApplicationController
   def show
     set_target_user
     @posts = @user.posts.order(created_at: :desc)
+    @likes = Like.where(user_id: @user.id).order(created_at: :desc)
   end
 
   def following
     user  = User.find(params[:id])
-    @users = user.following
+    @following_users = user.following
+    @followers_users = user.followers
     render 'follow_show'
   end
 
   def followers
     user  = User.find(params[:id])
-    @users = user.followers
+    @following_users = user.following
+    @followers_users = user.followers
     render 'follow_show'
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:name, :image, :image_cache, :profile, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :image, :image_cache, :remove_image, :profile, :email, :password, :password_confirmation)
   end
 
   def set_target_user

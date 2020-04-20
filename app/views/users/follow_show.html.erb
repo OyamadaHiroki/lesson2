@@ -1,9 +1,84 @@
-<div>
-    <% @users.each do |user| %>
-      <ul>
-        <%= image_tag user.image.url %>
-        <%= link_to user.name, user_path(user) %>
-        <%= user.profile %>
-      </ul>
-    <% end %>
+<div class="back-motion">
+  <%= link_to user_path do %>
+      <i class="fas fa-arrow-left"></i>
+  <% end %>
 </div>
+<div>
+    <div　id="d1">
+        <ul class="nav nav-pills tab-list" id="right-tab">
+            <li><a href="#tab1" data-toggle="tab" class="custum-tab active ">フォロー</a></li>
+            <li><a href="#tab2" data-toggle="tab" class="custum-tab">フォロワー</a></li>
+        </ul>
+    </div>
+    <div class="main tab-content">
+        <div class="tab-pane active" id="tab1">
+              <% @following_users.each do |user| %>
+                  <section class="post-item">
+                      <header>
+                          <div class="post-user-image">
+                              <% if user.image %>
+                                  <%= image_tag user.image.thumb50.url, style: "border-radius: 50%;" %>
+                              <% else %>
+                                  <%= image_tag "assets/default.png", width: "70px" %>
+                              <% end %>
+                          </div>
+                      </header>
+                      <div class="post-content">
+                          <div>
+                              <div style="float: right; display: inline-block;">
+                                  <%= render partial: 'follow_form', locals: { user: user } %>
+                              </div>
+                              <div class="post-info" style="display:block;">
+                                  <div class="user-name">
+                                      <%= link_to(user.name, user_path(user)) %>
+                                      <% if @current_user.followers.include?(user) %>
+                                        <span class="following">あなたをフォローしています</span>
+                                      <% end %>
+                                  </div>
+                                  <p class="user-email"><%= user.email %></p>
+                              </div>
+                              <div class="post-main">
+                                  <p><%= user.profile %></p>
+                              </div>
+                          </div>
+                      </div>
+                  </section>
+              <% end %>
+        </div>
+        <div class="tab-pane" id="tab2">
+              <% @followers_users.each do |user| %>
+                  <section class="post-item">
+                      <header>
+                          <div class="post-user-image">
+                              <% if user.image %>
+                                  <%= image_tag user.image.thumb50.url, style: "border-radius: 50%;" %>
+                              <% else %>
+                                  <%= image_tag "assets/default.png", width: "70px" %>
+                              <% end %>
+                          </div>
+                      </header>
+                      <div class="post-content">
+                          <div>
+                              <div style="float: right; display: inline-block;">
+                                  <%= render partial: 'follow_form', locals: { user: user } %>
+                              </div>
+                              <div class="post-info" style="display:block;">
+                                  <div class="user-name">
+                                      <%= link_to(user.name, user_path(user)) %>
+                                      <% if @current_user.followers.include?(user) %>
+                                        <span class="following">あなたをフォローしています</span>
+                                      <% end %>
+                                  </div>
+                                  <p class="user-email"><%= user.email %></p>
+                              </div>
+                              <div class="post-main">
+                                  <p><%= user.profile %></p>
+                              </div>
+                          </div>
+                      </div>
+                  </section>
+              <% end %>
+        </div>
+    </div>
+</div>
+

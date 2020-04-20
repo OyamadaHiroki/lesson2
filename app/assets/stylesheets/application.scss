@@ -11,7 +11,333 @@
  * It is generally better to create a new file per style scope.
  *
  */
+/*
+*= require_self
+*= require_tree .
+*/
+
+body {
+    overflow-x: hidden;
+}
+
+#sidebar-wrapper {
+    min-height: 100vh;
+    margin-left: -15rem;
+    -webkit-transition: margin .25s ease-out;
+    -moz-transition: margin .25s ease-out;
+    -o-transition: margin .25s ease-out;
+    transition: margin .25s ease-out;
+}
+
+#sidebar-wrapper .sidebar-heading {
+    padding: 0.875rem 1.25rem;
+    font-size: 1.2rem;
+}
+
+#sidebar-wrapper .list-group {
+    width: 15rem;
+}
+
+#page-content-wrapper {
+    min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    margin-left: 0;
+}
+.navbar {
+    align-items: baseline;
+    box-shadow: none!important;
+}
+.sidebar-heading {
+    display: flex;
+    align-items: center;
+}
+.sidebar-name {
+    margin-left: 1rem;
+    font-size: 1rem;
+}
+.post-content {
+    margin: 0 15px;
+    width: 100%;
+}
+.post-item {
+    display: flex;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.4);
+    padding:10px;
+    padding-bottom: 0;
+}
+.container {
+    max-width: 600px!important;
+    height: 100%;
+    border-right: 1px solid rgba(128, 128, 128, 0.4);
+    margin-left: 0!important;
+    padding: 0!important;
+}
+.post-subitems {
+    display: flex;
+    justify-content: space-between;
+}
+.post-user-image {
+    display: block;
+    border-radius: 50%;
+}
+
+.post-info {
+    display: flex;
+    width:100%;
+    align-items: baseline;
+
+    .user-name {
+        margin-right:20px;
+        a {
+            color: darken($color: #000000, $amount: 0);
+            font-size: 1.2rem;
+        }
+    }
+    .create-time {
+        color: rgb(83, 82, 82);
+    }
+}
+
+.post-main {
+    margin-top:10px;
+}
+
+.detail-btn {
+    color: rgba(128, 128, 128, 0.7);
+}
+
+.tweet-form {
+    width: 100%;
+    margin: 0 15px;
+    border: none!important;
+}
+
+.tweet-btn {
+    display: block;
+    margin-left: auto;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    background-color: rgb(28,161,242);
+    color: white;
+    font-size: 12px;
+}
+
+.spacer {
+    height: 1rem;
+    background-color: rgba(128, 128, 128, 0.2);
+    margin: 0;
+    padding: 0;
+}
+
+.margin-delete {
+    margin: 0;
+}
+
+.show-user {
+    padding:10px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.4);
+
+    .show-header {
+        display: flex;
+        justify-content: space-between;
+    }
+
+}
+
+.user-edit-link {
+    padding: 8px 20px;
+    background-color:rgb(28,161,242) ;
+    border-radius: 20px;
+    color: white;
+    float: right;
+    font-size: 0.8rem;
+    
+    &:hover {
+        background-color:rgb(26, 140, 211);
+        color: white;
+        text-decoration: none;
+    }
+}
+
+.show-user-info {
+    margin-top: 10px;
+    .user-name {
+        display: flex;
+        align-items: baseline;
+        font-size: 20px;
+        margin: 0;
+        
+    }
+
+    .user-email {
+        color: rgb(83, 82, 82);
+    }
+}
+.following {
+    font-size: 0.8rem;
+    margin-left: 10px;
+    padding: 2px 6px;
+    border-radius: 10px;
+    background-color: rgba(128, 128, 128, 0.1);
+    color:rgba(92, 92, 92, 0.9)
+}
+.follow-links {
+    display: flex;
+    .followed-link {
+        display: block;
+        margin-right: 20px;
+    }
+}
+.follow-text {
+    color:rgba(85, 85, 85, 0.8);
+    &:hover {
+        text-decoration: none;
+        color: rgba(85, 85, 85, 1);
+    }
+}
+
+.nav-pills {
+    width: 100%;
+    height: 100%;
+    li {
+        width: 50%;
+        text-align: center;
+        display: block;
+        border-bottom: 1px solid rgba(128, 128, 128, 0.4)!important;
+        pointer-events: auto;
+        .active {
+            border-bottom: 2px solid rgb(26, 140, 211);
+            pointer-events: none;
+        }
+
+        .custum-tab {
+            display: block;
+            height: 100%;
+            color: black;
+            padding: 10px 0;
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+    li:first-child {
+        border-right: 1px solid rgba(128, 128, 128, 0.4);
+    }
+}
+.base-btn {
+    
+    
+    form {
+        margin-bottom: 0;
+
+        .unfollow-btn {
+            background-color:rgb(28,161,242) ;
+            padding: 8px 16px;
+            color: white;
+            border-radius: 20px;
+            font-size: 0.8rem;
+
+        }
+        .follow-btn {
+            color: rgb(28,161,242);
+            padding: 8px 16px;
+            border-radius: 20px;
+            border:1px solid rgb(28,161,242);
+            font-size: 0.8rem;
+        }
+        
+    }
+}
+
+.back-motion {
+    border-bottom: 1px solid rgba(128, 128, 128, 0.4)!important;
+    padding: 10px;
+    a {
+        color: black;
+    }
+
+    a:hover {
+        color: rgb(70, 68, 68);
+    }
+}
+.user-edit {
+    padding: 10px;
+}
+
+.edit-color {
+    color:rgba(85, 85, 85, 0.8);
+}
+.edit-btn {
+    display:block;
+    float: right;
+    font-size: 0.8rem;
+    padding: 8px 16px;
+    background-color:rgb(28,161,242) ;
+    color: white;
+    border-radius: 16px;
+    margin-left: auto;
+    &:hover {
+        background-color:rgb(35, 121, 175) ;
+    }
+}
+
+#image-preview {
+    
+    width: 100px;
+    object-fit: cover;
+}
+
+
+.form-top {
+    position: relative;
+}
+
+
+.icon-box {
+    padding: 0.5rem;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    top:50px;
+    left: 50px;
+    font-size: 1.5rem;
+    color: white;
+    border-radius: 50%;
+    &:hover {
+        background-color: rgba(128, 128, 128, 0.4);
+    }
+}
+
+.form-items {
+    padding:30px;
+    margin: 40px;
+    border: 1px solid rgba(128, 128, 128, 0.4);
+    border-radius: 10px;
+}
+
+
+@media (min-width: 768px) {
+    #wrapper.toggled #sidebar-wrapper {
+        margin-left: -15rem;
+    }
+
+    #sidebar-wrapper {
+        margin-left: 0;
+    }
+
+    #page-content-wrapper {
+        min-width: 0;
+        width: 100%;
+    }   
+}
+.submit-btn {
+    color: white;
+    background-color: rgb(28,161,242);
+}
 
 @import "reset.css";
-@import "base.scss";
+@import "base";
 @import "posts";

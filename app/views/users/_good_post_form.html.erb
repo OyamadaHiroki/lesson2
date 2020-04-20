@@ -1,6 +1,7 @@
-<% @repries.each do |post| %>
+<% likes.each do |like| %>
+    <% post = Post.find_by(id: like.post_id) %>
         <section class="post-item">
-            <header>
+            <header class="">
                 <div class="post-user-image">
                     <% if post.user.image %>
                         <%= image_tag post.user.image.thumb50.url, style: "border-radius: 50%;" %>
@@ -20,7 +21,7 @@
                         </div>
                     </div>
                     <div class="post-main">
-                        <p><%= post.repry %></p>
+                        <p><%= post.content %></p>
                     </div>
                 </div>
 
@@ -45,4 +46,4 @@
                 </div>
             </div>
         </section>
-<% end %>
+        <% end %>

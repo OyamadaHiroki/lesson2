@@ -1,6 +1,6 @@
-<% @repries.each do |post| %>
+<% posts.each do |post| %>
         <section class="post-item">
-            <header>
+            <header class="">
                 <div class="post-user-image">
                     <% if post.user.image %>
                         <%= image_tag post.user.image.thumb50.url, style: "border-radius: 50%;" %>
@@ -20,7 +20,7 @@
                         </div>
                     </div>
                     <div class="post-main">
-                        <p><%= post.repry %></p>
+                        <p><%= post.content %></p>
                     </div>
                 </div>
 

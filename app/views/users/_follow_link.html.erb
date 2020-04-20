@@ -1,9 +1,11 @@
 <% user ||= @current_user %>
-<div>
-    <%= link_to "フォロー", following_user_path(user) %>
-    <%= user.following.count %>
-</div>
-<div>
-    <%= link_to "フォロワー", followers_user_path(user) %>
-    <%= user.followers.count %>
+<div class="follow-links">
+    <div class="followed-link">
+        <%= user.following.count %>
+        <%= link_to "フォロー", following_user_path(user, anchor: :tab1), class: "follow-text" %>
+    </div>
+    <div class="follower-link">
+        <%= user.followers.count %>
+        <%= link_to "フォロワー", followers_user_path(user, anchor: :tab2), class: "follow-text" %>
+    </div>
 </div>
