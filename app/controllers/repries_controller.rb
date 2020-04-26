@@ -24,7 +24,7 @@ class RepriesController < ApplicationController
   private
 
   def repry_params
-    params.require(:repry).permit(:repry, :post_id)
+    params.require(:repry).permit(:content, :post_id)
   end
 
 end

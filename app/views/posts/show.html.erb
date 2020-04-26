@@ -1,8 +1,12 @@
-<%= link_to posts_path do %>
-    <i class="fas fa-arrow-left"></i>
-<% end %>
+<div class="back-motion">
+    <%= link_to posts_path do %>
+        <i class="fas fa-arrow-left"></i>
+    <% end %>
+</div>
 
 <%= render partial: 'application/post_form', locals: { post: @post } %>
+
+<p class="spacer"></p>
 
 <%= render partial: 'repries/repry', locals: {repry: @repies} %>
 

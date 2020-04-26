@@ -12,7 +12,7 @@
         <%= form_for repry do |f| %>
             <%= f.hidden_field :post_id %>
             <div class="form-group"> 
-                <%= f.text_field :repry, :placeholder => "返信をツイート", class: 'form-control', row: 4 %>
+                <%= f.text_field :content, :placeholder => "返信をツイート", class: 'form-control', row: 4 %>
             </div>
             <%= f.submit "返信", class: 'tweet-btn' %>
         <% end %>
