@@ -1,20 +1,51 @@
 version: '3'
 services:
-  db:
-    image: mysql:8.0
-    volumes:
-      - ./tmp/db:/var/lib/mysql
-    environment:
-      - MYSQL_ALLOW_EMPTY_PASSWORD=1
   web:
-    build: .
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    build:
+      context: .
+    environment:
+      MYSQL_DATABASE: docker_development
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
+      TZ: "Asia/Tokyo"
+    command: bundle exec puma -C config/puma.rb
     volumes:
       - .:/app
-    ports:
-      - "3000:3000"
+      - public-data:/app/public
+      - tmp-data:/app/tmp
+      - log-data:/app/log
     depends_on:
       - db
+    ports:
+      - "3000:3000"
     tty: true
     stdin_open: true
+      
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: docker_development
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
+      TZ: "Asia/Tokyo"
+      
+  nginx:
+    build:
+      context: containers/nginx
+    volumes:
+      - public-data:/app/public
+      - tmp-data:/app/tmp
+    ports:
+      - 80:80
+    depends_on:
+      - web
+    
+
+volumes:
+  public-data:
+  tmp-data:
+  log-data:
+  db-data:
     
