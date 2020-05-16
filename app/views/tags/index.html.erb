@@ -1,0 +1,18 @@
+<%= form_with url: tags_path, method: :get ,local: true do |f| %>
+    <%= f.text_field :search, :placeholder => "キーワードを入力してください", class: "search-form" %> 
+    <%= f.submit "検索" ,:tag => nil, class: "search-submit" %> 
+<% end %> 
+<p class="spacer"></p>
+<% @tags.each do |tag| %>
+    <div >
+        <%= link_to "tag/#{tag.name}", class: "tag-index" do %>
+            <div class="tag-mark">
+                <p>#</p>
+            </div>
+            <div class="tag-content">
+                <%= tag.name %>
+                <p style="margin: 0;"><span class="post-count">投稿<%= tag.posts.count %>件</span></p>
+            </div>
+        <% end %>
+    </div>
+<% end %>

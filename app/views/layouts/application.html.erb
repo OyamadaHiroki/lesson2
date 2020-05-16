@@ -21,9 +21,18 @@
         </div>
         <div class="list-group list-group-flush">
           <% if @current_user %>
-            <%= link_to 'ホーム', posts_path, class: "list-group-item list-group-item-action bg-light" %>
-            <%= link_to 'マイページ', user_path(@current_user), class: "list-group-item list-group-item-action bg-light" %>
-            <%= link_to 'ツイートする', new_post_path, class: "list-group-item list-group-item-action bg-light" %>
+            <%= link_to posts_path, class: "list-group-item list-group-item-action bg-light" do %>
+              <i class="fas fa-home" style="margin-right: 1rem;"></i>ホーム
+            <% end %>
+            <%= link_to user_path(@current_user), class: "list-group-item list-group-item-action bg-light" do %>
+              <i class="far fa-user" style="margin-right: 1rem;"></i>マイページ
+            <% end%>
+            <%= link_to new_post_path, class: "list-group-item list-group-item-action bg-light" do %>
+              <i class="far fa-paper-plane" style="margin-right: 1rem;"></i>ツイートする
+            <% end %>
+            <%= link_to tags_path, class: "list-group-item list-group-item-action bg-light" do %>
+              <i class="fas fa-hashtag" style="margin-right: 1rem;"></i>タグを探す
+            <% end %>
             <%= link_to 'ログアウト', logout_path, method: :delete, class: "list-group-item list-group-item-action bg-light" %>
           <% else %>
             <%= link_to '登録', new_user_path, class: "list-group-item list-group-item-action bg-light" %>
