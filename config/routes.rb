@@ -12,8 +12,10 @@ Rails.application.routes.draw do
   resources :posts do
     resources :likes, only: %i[create destroy]
   end
+  resources :tags, only: %i[index]
+  get '/tag/:name', to: "tags#show"
   resources :repries, only: %i[create destroy]
-  resources :relationships, only: [:create, :destroy]
+  resources :relationships, only: %i[:create, :destroy]
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
 end

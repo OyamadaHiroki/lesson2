@@ -1,0 +1,15 @@
+<div >
+        <div class="tag-index">
+            <div class="tag-mark">
+                <p>#</p>
+            </div>
+            <div class="tag-content">
+                <%= @tag.name %>
+                <p style="margin: 0;"><span class="post-count">投稿<%= @tag.posts.count %>件</span></p>
+            </div>
+        </div>
+    </div>
+<p class="spacer"></p>
+<div>
+    <%= render partial: 'application/posts_form', locals: { posts: @posts } %>
+</div>

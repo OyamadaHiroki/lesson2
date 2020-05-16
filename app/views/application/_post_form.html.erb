@@ -18,8 +18,7 @@
                             <%= date_format(post.created_at) %>
                         </div>
                     </div>
-                    <div class="post-main">
-                        <p><%= post.content %></p>
+                    <div class="post-main"><%= render_with_tags(post.content) %></p>
                     </div>
                 </div>
 
